@@ -45,7 +45,7 @@ namespace Desafio_AccesoDatos.Database
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Productos)
                     .HasForeignKey(d => d.IdUsuario)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Producto_Usuario");
             });
 
@@ -56,13 +56,13 @@ namespace Desafio_AccesoDatos.Database
                 entity.HasOne(d => d.IdProductoNavigation)
                     .WithMany(p => p.ProductoVendidos)
                     .HasForeignKey(d => d.IdProducto)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_ProductoVendido_Producto");
 
                 entity.HasOne(d => d.IdVentaNavigation)
                     .WithMany(p => p.ProductoVendidos)
                     .HasForeignKey(d => d.IdVenta)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_ProductoVendido_Venta");
             });
 
@@ -88,7 +88,7 @@ namespace Desafio_AccesoDatos.Database
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Venta)
                     .HasForeignKey(d => d.IdUsuario)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Venta_Usuario");
             });
 

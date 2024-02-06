@@ -59,7 +59,7 @@ namespace Desafio_AccesoDatos.Service
             }
         }
 
-        public static bool ActualizarUsuarioPorId(Usuario usuario, int id)
+        public static bool ModificarUsuarioPorId(Usuario usuario, int id)
         {
 
             using (CoderContext contexto = new CoderContext())
@@ -91,6 +91,24 @@ namespace Desafio_AccesoDatos.Service
                     contexto.SaveChanges();
                     return true;
                 }
+                return false;
+            }
+        }
+
+        public static bool EliminarProductoPorID(int Id)
+        {
+            using (CoderContext contexto = new CoderContext())
+            {
+                Producto? productoAEliminar = contexto.Productos.Include(p => p.ProductoVendidos).
+                    Where(p => p.Id == Id).FirstOrDefault();
+
+                if (productoAEliminar != null)
+                {
+                    contexto.Productos.Remove(productoAEliminar);
+                    contexto.SaveChanges();
+                    return true;
+                }
+
                 return false;
             }
         }
